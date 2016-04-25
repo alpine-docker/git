@@ -1,4 +1,6 @@
-FROM alpine:3.2
+FROM alpine:3.3
+
+MAINTAINER Bill Wang
 
 RUN apk --update add git && \
     rm -rf /var/lib/apt/lists/* && \
