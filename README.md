@@ -6,8 +6,8 @@ Notes: only useful to clone the git codes with https url.
 
 ### usage
 
-alias git="docker run -ti --rm -v $(pwd):/git bwits/docker-git-alpine"
+    alias git="docker run -ti --rm -v $(pwd):/git bwits/docker-git-alpine"
 
 for example, if you need clone this repository, with the alias you just set, you can run it as local command
 
-git clone https://github.com/BWITS/docker-git-alpine.git
+    git clone https://github.com/BWITS/docker-git-alpine.git
