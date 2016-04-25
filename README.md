@@ -1,6 +1,6 @@
 ### docker-git-alpine
 
-a useful simple git container running in alpine linux, especially for RancherOS which don't have package manager.
+a useful simple git container running in alpine linux, especially for tiny linux distro, such as RancherOS, which don't have package manager.
 
 Notes: only useful to clone the git codes with https url. 
 
