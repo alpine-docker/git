@@ -1,8 +1,8 @@
-FROM alpine:3.3
+FROM alpine
 
 MAINTAINER Bill Wang
 
-RUN apk --update add git && \
+RUN apk --update add git openssh && \
     rm -rf /var/lib/apt/lists/* && \
     rm /var/cache/apk/*
 
