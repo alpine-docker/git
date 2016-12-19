@@ -11,3 +11,10 @@ Notes: only useful to clone the git codes with https url.
 for example, if you need clone this repository, with the alias you just set, you can run it as local command
 
     git clone https://github.com/BWITS/docker-git-alpine.git
+
+### The Protocols
+
+Support git, http/https and ssh protocols.
+
+Refer:
+[Git on the Server - The Protocols](https://git-scm.com/book/en/v2/Git-on-the-Server-The-Protocols)
