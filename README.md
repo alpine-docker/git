@@ -1,15 +1,25 @@
 ### docker-git-alpine
 
-A useful simple git container running in alpine linux, especially for tiny linux distro, such as RancherOS, which don't have package manager.
+A useful simple git container running in alpine Linux, especially for tiny Linux distro, such as RancherOS, which doesn't have a package manager.
 
 ### usage
-Add this to your .bashrc
+Add this fuction to `~/.bashrc` or `~/.profile`
     
-    alias git="docker run -ti --rm -v ${HOME}:/root -v $(pwd):/git bwits/docker-git-alpine"
+    $ cat ~/.profile
+    
+    ...
+    
+    function git () {
+        (docker run -ti --rm -v ${HOME}:/root -v $(pwd):/git alpine/git $@)
+    }
+    
+    ...
+    
+    $ source ~/.profile
 
-for example, if you need clone this repository, with the alias you just set, you can run it as local command
+for example, if you need clone this repository, with the function you just set, you can run it as local command
 
-    git clone https://github.com/BWITS/docker-git-alpine.git
+    git clone https://github.com/alpine-docker/git.git
 
 ### The Protocols
 
