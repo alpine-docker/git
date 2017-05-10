@@ -2,8 +2,6 @@
 
 A useful simple git container running in alpine linux, especially for tiny linux distro, such as RancherOS, which don't have package manager.
 
-Notes: only useful to clone the git codes with https url. 
-
 ### usage
 Add this to your .bashrc
     
