@@ -34,7 +34,7 @@ for example, if you need clone this repository, with the function you just set, 
 
     alias git="docker run -ti --rm -v $(pwd):/git bwits/docker-git-alpine"
     
-NOTES:
+#### NOTES:
 
 You need redefine it when you switch between different repositories 
 
