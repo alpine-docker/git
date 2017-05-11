@@ -3,7 +3,16 @@
 A useful simple git container running in alpine Linux, especially for tiny Linux distro, such as RancherOS, which doesn't have a package manager.
 
 ### usage
-Add this fuction to `~/.bashrc` or `~/.profile`
+
+    docker run -ti --rm -v ${HOME}:/root -v $(pwd):/git alpine/git <git_command>
+
+For example, if you need clone this repository, you can run
+
+    docker run -ti --rm -v ${HOME}:/root -v $(pwd):/git alpine/git clone https://github.com/alpine-docker/git.git
+    
+### Optional usage:
+
+To save your type, add this fuction to `~/.bashrc` or `~/.profile`
     
     $ cat ~/.profile
     
