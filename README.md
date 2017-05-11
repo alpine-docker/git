@@ -10,7 +10,7 @@ For example, if you need clone this repository, you can run
 
     docker run -ti --rm -v ${HOME}:/root -v $(pwd):/git alpine/git clone https://github.com/alpine-docker/git.git
     
-### Optional usage:
+### Optional usage 1:
 
 To save your type, add this fuction to `~/.bashrc` or `~/.profile`
     
@@ -29,6 +29,14 @@ To save your type, add this fuction to `~/.bashrc` or `~/.profile`
 for example, if you need clone this repository, with the function you just set, you can run it as local command
 
     git clone https://github.com/alpine-docker/git.git
+
+### Optional usage 2:
+
+    alias git="docker run -ti --rm -v $(pwd):/git bwits/docker-git-alpine"
+    
+NOTES:
+
+You need redefine it when you switch between different repositories 
 
 ### The Protocols
 
