@@ -36,8 +36,22 @@ for example, if you need clone this repository, with the function you just set, 
     
 #### NOTES:
 
-You need redefine it when you switch between different repositories 
+- You need redefine (re-run) the alias, when you switch between different repositories
+- You need run above alias command only under git repository's root directly.
 
+## Demo
+
+    $ cd application
+    $ alias git="docker run -ti --rm -v $(pwd):/git -v $HOME/.ssh:/root/.ssh alpine/git"
+    $ git clone git@github.com:YOUR_ACCOUNT/YOUR_REPO.git
+    $ cd YOUR_REPO
+    $ alias git="docker run -ti --rm -v $(pwd):/git -v $HOME/.ssh:/root/.ssh alpine/git"
+    # edit several files
+    $ git add . 
+    $ git status
+    $ git commit -m "test"
+    $ git push -u origin master
+    
 ### The Protocols
 
 Supports git, http/https and ssh protocols.
