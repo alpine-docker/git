@@ -32,7 +32,7 @@ for example, if you need clone this repository, with the function you just set, 
 
 ### Optional usage 2:
 
-    alias git="docker run -ti --rm -v $(pwd):/git bwits/docker-git-alpine"
+    alias git="docker run -ti --rm -v $(pwd):/git alpine/git"
     
 #### NOTES:
 
