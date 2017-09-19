@@ -2,6 +2,8 @@
 
 A useful simple git container running in alpine Linux, especially for tiny Linux distro, such as RancherOS, which doesn't have a package manager.
 
+[![DockerHub Badge](http://dockeri.co/image/alpine/git)](https://hub.docker.com/r/alpine/git/)
+
 ### usage
 
     docker run -ti --rm -v ${HOME}:/root -v $(pwd):/git alpine/git <git_command>
