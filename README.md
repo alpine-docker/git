@@ -39,7 +39,7 @@ for example, if you need clone this repository, with the function you just set, 
 #### NOTES:
 
 - You need redefine (re-run) the alias, when you switch between different repositories
-- You need run above alias command only under git repository's root directly.
+- You need run above alias command only under git repository's root directory.
 
 ## Demo
 
