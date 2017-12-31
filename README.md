@@ -21,7 +21,7 @@ To save your type, add this fuction to `~/.bashrc` or `~/.profile`
     ...
     
     function git () {
-        (docker run -ti --rm -v ${HOME}:/root -v $(pwd):/git alpine/git $@)
+        (docker run -ti --rm -v ${HOME}:/root -v $(pwd):/git alpine/git "$@")
     }
     
     ...
