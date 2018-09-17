@@ -1,1 +1,6 @@
+sudo: required
+
+services:
+  - docker
+
 script: make
