@@ -20,4 +20,4 @@ if [[ "$TRAVIS_BRANCH" == "master" ]]; then
   docker push ${image}:latest
 fi
 
-make release
+#make release
