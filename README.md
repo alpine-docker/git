@@ -4,6 +4,18 @@ A useful simple git container running in alpine Linux, especially for tiny Linux
 
 [![DockerHub Badge](http://dockeri.co/image/alpine/git)](https://hub.docker.com/r/alpine/git/)
 
+### Github Repo
+
+https://github.com/alpine-docker/git
+
+### Daily travis CI build logs
+
+https://travis-ci.org/alpine-docker/git
+
+### Docker iamge tags
+
+https://hub.docker.com/r/alpine/git/tags/
+
 ### usage
 
     docker run -ti --rm -v ${HOME}:/root -v $(pwd):/git alpine/git <git_command>
