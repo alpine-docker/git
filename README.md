@@ -12,7 +12,7 @@ https://github.com/alpine-docker/git
 
 https://travis-ci.org/alpine-docker/git
 
-### Docker iamge tags
+### Docker image tags
 
 https://hub.docker.com/r/alpine/git/tags/
 
