@@ -72,3 +72,11 @@ Supports git, http/https and ssh protocols.
 
 Refer:
 [Git on the Server - The Protocols](https://git-scm.com/book/en/v2/Git-on-the-Server-The-Protocols)
+
+### Automation builds
+
+Set Travis CI to run builds every month.
+- build on latest alpine image
+- build with latest git in the alpine image
+- generate new tag for this image
+- update `latest` tag for this image
