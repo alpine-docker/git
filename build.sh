@@ -27,6 +27,12 @@ if [[ "$TRAVIS_BRANCH" == "master" ]]; then
   docker push ${image}:${NEXT_TAG}
   docker push ${image}:latest
 
+  # add another tag with git version, with this way, we can check this git image health
+  VERSION=($( docker run -ti --rm alpine/git version|awk '{print $NF}'))
+  echo ${VERSION}
+  docker tag ${image}:${NEXT_TAG} ${image}:v${VERSION}
+  docker push ${image}:v${VERSION}
+
   # push the tag
   git remote set-url origin https://${GITHUB_NAME}:${GITHUB_TOKEN}@github.com/alpine-docker/git.git
   echo "Set github Username & Email"

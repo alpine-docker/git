@@ -79,4 +79,5 @@ Set Travis CI to run builds every month.
 - build on latest alpine image
 - build with latest git in the alpine image
 - generate new tag for this image
+- generate git's version as image tag as well (`v${GIT_VERSION}`)
 - update `latest` tag for this image
