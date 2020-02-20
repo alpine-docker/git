@@ -8,7 +8,7 @@ A useful simple git container running in alpine Linux, especially for tiny Linux
 
 https://github.com/alpine-docker/git
 
-### Daily travis CI build logs
+### travis CI build logs
 
 https://travis-ci.org/alpine-docker/git
 
