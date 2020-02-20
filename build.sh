@@ -28,7 +28,7 @@ if [[ "$TRAVIS_BRANCH" == "master" ]]; then
   docker push ${image}:latest
 
   # add another tag with git version, with this way, we can check this git image health
-  VERSION=($( docker run -ti --rm alpine/git version|awk '{print $NF}'))
+  VERSION=($(docker run -i --rm alpine/git version|awk '{print $NF}'))
   echo ${VERSION}
   docker tag ${image}:${NEXT_TAG} ${image}:v${VERSION}
   docker push ${image}:v${VERSION}
