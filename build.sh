@@ -22,7 +22,7 @@ echo ${NEXT_TAG}
 
 if [[ "$TRAVIS_BRANCH" == "master" ]]; then
   docker build --no-cache -t ${image}:${NEXT_TAG} .
-  docker tag ${image}:${tag} ${image}:latest
+  docker tag ${image}:${NEXT_TAG} ${image}:latest
   docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
   docker push ${image}:${NEXT_TAG}
   docker push ${image}:latest
