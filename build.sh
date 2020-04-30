@@ -20,17 +20,18 @@ else
 fi
 echo ${NEXT_TAG}
 
-if [[ "$TRAVIS_BRANCH" == "master" ]]; then
-  docker build --no-cache -t ${image}:${NEXT_TAG} .
-  docker tag ${image}:${NEXT_TAG} ${image}:latest
+docker build --no-cache -t ${image}:${NEXT_TAG} .
+docker tag ${image}:${NEXT_TAG} ${image}:latest
+
+# add another tag with git version, with this way, we can check this git image health
+VERSION=($(docker run -i --rm ${image}:latest version|awk '{print $NF}'))
+echo ${VERSION}
+docker tag ${image}:${NEXT_TAG} ${image}:v${VERSION}
+
+if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == false ]]; then
   docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
   docker push ${image}:${NEXT_TAG}
   docker push ${image}:latest
-
-  # add another tag with git version, with this way, we can check this git image health
-  VERSION=($(docker run -i --rm alpine/git version|awk '{print $NF}'))
-  echo ${VERSION}
-  docker tag ${image}:${NEXT_TAG} ${image}:v${VERSION}
   docker push ${image}:v${VERSION}
 
   # push the tag
