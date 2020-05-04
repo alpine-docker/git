@@ -43,3 +43,11 @@ if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == false ]]; then
   git tag ${NEXT_TAG}
   git push origin ${NEXT_TAG}
 fi
+
+if [[ "$TRAVIS_BRANCH" == "feature/non-root" && "$TRAVIS_PULL_REQUEST" == false ]]; then
+  docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+  docker tag ${image}:v${VERSION} ${image}:user
+  docker tag ${image}:v${VERSION} ${image}:v${VERSION}-user
+  docker push ${image}:user
+  docker push ${image}:v${VERSION}-user
+fi

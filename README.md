@@ -16,6 +16,21 @@ https://travis-ci.org/alpine-docker/git
 
 https://hub.docker.com/r/alpine/git/tags/
 
+Notes:
+
+New tags with non-root user in image has been created.
+
+```
+alpine/git:<version>-user
+alpine/git:user
+```
+Its uid and gid in container are 1000
+```
+$ docker run -ti --rm --entrypoint=id alpine/git:user
+uid=1000(git-user) gid=1000(git-user)
+```
+Docker build from feature branch `feature/non-root`
+
 ### usage
 
     docker run -ti --rm -v ${HOME}:/root -v $(pwd):/git alpine/git <git_command>
