@@ -3,5 +3,26 @@ sudo: required
 services:
   - docker
 
-script:
-  - bash ./build.sh
+jobs:
+  allow_failures:
+  - if: arch = s390x
+  include:
+    - stage: build amd64
+      workspaces:
+        create:
+          name: ws1
+          paths:
+            - tag.txt
+      script: 
+      - bash ./build.sh
+    - stage: build s390x
+      arch: s390x
+      workspaces:
+        use: ws1
+      script:
+      - bash ./build.sh
+    - stage: make multi-arch images
+      workspaces:
+        use: ws1
+      script:
+      - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./multi-arch-image.sh; fi'
