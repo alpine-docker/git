@@ -1,0 +1,34 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Docker build and push
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v2
+      - name: install buildx
+        id: buildx
+        uses: crazy-max/ghaction-docker-buildx@v1
+        with:
+          version: latest
+      - name: login to docker hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+      - name: build the image
+        run: |
+          docker buildx build --push \
+            --tag heussd/git \
+            --platform  linux/amd64,linux/ppc64le,linux/s390x,linux/arm64,linux/arm/v7,linux/arm/v6 .
