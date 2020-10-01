@@ -29,6 +29,5 @@ jobs:
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
       - name: build the image
         run: |
-          docker buildx build --push \
-            --tag heussd/git \
-            --platform  linux/amd64,linux/ppc64le,linux/s390x,linux/arm64,linux/arm/v7,linux/arm/v6 .
+          GIT_VERSION="G1.1" TAG_VERSION="T1.1" docker buildx bake --push
+
