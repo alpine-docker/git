@@ -29,6 +29,18 @@ jobs:
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
       - name: build the image
         run: |
-          docker buildx build --push \
-            --tag heussd/git \
-            --platform  linux/amd64,linux/ppc64le,linux/s390x,linux/arm64,linux/arm/v7,linux/arm/v6 .
+          LATEST_TAG=$(git ls-remote --tags origin |awk -F \/ '{print $NF}'|sort -Vr|head -1)
+          NEXT_TAG=$(docker run --rm alpine/semver:5.5.0 semver -c -i patch ${LATEST_TAG})
+
+          echo ${NEXT_TAG}
+          GIT_VERSION=$(docker build . --no-cache | grep "Installing git" | awk -F '[()]' '{print $4}')
+          echo $GIT_VERSION
+
+          GIT_VERSION=$GIT_VERSION TAG_VERSION=$NEXT_TAG docker buildx bake --push
+
+      - name: Tag
+        uses: K-Phoen/semver-release-action@master
+        with:
+          release_branch: master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
