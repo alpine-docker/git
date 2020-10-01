@@ -29,5 +29,7 @@ jobs:
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
       - name: build the image
         run: |
-          GIT_VERSION="G1.1" TAG_VERSION="T1.1" docker buildx bake --push
+          GIT_VERSION=$(docker build . --no-cache | grep "Installing git" | awk -F '[()]' '{print $4}')
+          echo $GIT_VERSION
+          GIT_VERSION=$GIT_VERSION TAG_VERSION="T1.1" docker buildx bake --push
 
