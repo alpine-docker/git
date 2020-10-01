@@ -39,8 +39,8 @@ jobs:
           GIT_VERSION=$GIT_VERSION TAG_VERSION=$NEXT_TAG docker buildx bake --push
 
       - name: Tag
-      uses: K-Phoen/semver-release-action@master
-      with:
-        release_branch: master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: K-Phoen/semver-release-action@master
+        with:
+          release_branch: master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
