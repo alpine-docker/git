@@ -37,11 +37,11 @@ target "s390x" {
 }
 
 target "arm/v7" {
-	tags = ["${IMAGE}:latest-arm/v7", "${IMAGE}:${TAG_VERSION}-arm/v7", "${IMAGE}:v${GIT_VERSION}-arm/v7"]
+	tags = ["${IMAGE}:latest-armv7", "${IMAGE}:${TAG_VERSION}-armv7", "${IMAGE}:v${GIT_VERSION}-armv7"]
     platforms = ["linux/arm/v7"]
 }
 
 target "arm/v6" {
-	tags = ["${IMAGE}:latest-arm/v6", "${IMAGE}:${TAG_VERSION}-arm/v6", "${IMAGE}:v${GIT_VERSION}-arm/v6"]
+	tags = ["${IMAGE}:latest-armv6", "${IMAGE}:${TAG_VERSION}-armv6", "${IMAGE}:v${GIT_VERSION}-armv6"]
     platforms = ["linux/arm/v6"]
 }
