@@ -28,9 +28,11 @@ jobs:
       - name: login to docker hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
       - name: build the image
+        id: build
         run: |
           LATEST_TAG=$(git ls-remote --tags origin |awk -F \/ '{print $NF}'|sort -Vr|head -1)
           NEXT_TAG=$(docker run --rm alpine/semver:5.5.0 semver -c -i patch ${LATEST_TAG})
+          echo "::set-output name=tag::$NEXT_TAG"
 
           echo ${NEXT_TAG}
           GIT_VERSION=$(docker build . --no-cache | grep "Installing git" | awk -F '[()]' '{print $4}')
@@ -38,9 +40,8 @@ jobs:
 
           GIT_VERSION=$GIT_VERSION TAG_VERSION=$NEXT_TAG docker buildx bake --push
 
-      - name: Tag
-        uses: K-Phoen/semver-release-action@master
+      - name: Create Release
+        uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          release_branch: master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "${{steps.build.outputs.tag}}"
