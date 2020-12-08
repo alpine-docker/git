@@ -5,7 +5,7 @@ services:
 
 jobs:
   allow_failures:
-  - if: arch in (s390x, ppc64le) 
+  - if: arch in (s390x, ppc64le, arm64)
   include:
     - stage: build amd64
       workspaces:
@@ -27,6 +27,12 @@ jobs:
         use: ws1
       script:
       - bash ./build.sh 
+    - stage: build arm64
+      arch: arm64
+      workspaces:
+        use: ws1
+      script:
+      - bash ./build.sh
     - stage: make multi-arch images
       workspaces:
         use: ws1

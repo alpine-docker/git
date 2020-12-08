@@ -10,7 +10,7 @@ set -e
 function get_arch_images(){
     image=$1; shift || fatal "usage error"
     tag=$1; shift || fatal "usage error"
-    archs="amd64 s390x ppc64le"
+    archs="amd64 s390x ppc64le arm64"
     for arch in $archs; do
         if [[ "$(docker pull ${image}:${tag}-${arch} >/dev/null 2>&1 ; echo $?)" == 0 ]]; then
         	echo "${image}:${tag}-${arch} "
