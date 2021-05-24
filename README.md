@@ -4,6 +4,17 @@ A useful simple git container running in alpine Linux, especially for tiny Linux
 
 [![DockerHub Badge](http://dockeri.co/image/alpine/git)](https://hub.docker.com/r/alpine/git/)
 
+### Additional notes about multi-arch images
+
+This feature was added on 23th May 2021.
+
+1. Version 3.5.4 and 3.6.0-rc.1 are manually pushed by me with multi-arch image supported
+2. Older version will be not updated as multi-arch images
+3. Newer vesions from now on will be multi-arch images (`--platform linux/amd64,linux/arm/v7,linux/arm64/v8,linux/arm/v6,linux/ppc64le,linux/s390x`)
+4. tag `latest` doesn't suppoort multi-arch yet, because I can't find a good way to tag it only without rebuild it.
+5. I don't support other architectures, except `amd64`, because I have no other environment to do that. If you have any issues with other arch, you need raise PR to fix it.
+6. There would be no difference for `docker pull` , `docker run` command with other arch, you can run it as normal. For example, if you need pull image from arm (such as new Mac M1 chip), you can run `docker pull alpine/helm:3.5.4` to get the image directly. Remember, it doesn't support `latest` tag with multi-arch image yet.
+
 ### Github Repo
 
 https://github.com/alpine-docker/git

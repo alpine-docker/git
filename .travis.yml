@@ -1,40 +1,19 @@
-sudo: required
+language: bash
 
-services:
-  - docker
+dist: bionic
 
-jobs:
-  allow_failures:
-  - if: arch in (s390x, ppc64le, arm64)
-  include:
-    - stage: build amd64
-      workspaces:
-        create:
-          name: ws1
-          paths:
-            - tag.txt
-      script: 
-      - bash ./build.sh
-    - stage: build s390x
-      arch: s390x
-      workspaces:
-        use: ws1
-      script:
-      - bash ./build.sh
-    - stage: build ppc64le
-      arch: ppc64le
-      workspaces:
-        use: ws1
-      script:
-      - bash ./build.sh 
-    - stage: build arm64
-      arch: arm64
-      workspaces:
-        use: ws1
-      script:
-      - bash ./build.sh
-    - stage: make multi-arch images
-      workspaces:
-        use: ws1
-      script:
-      - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./multi-arch-image.sh; fi'
+env:
+  - DOCKER_CLI_EXPERIMENTAL=enabled
+
+before_install:
+  - sudo rm -rf /var/lib/apt/lists/*
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  - lsb_release -cs
+  - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) edge"
+  - sudo apt-get update
+  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
+  - docker run --rm --privileged multiarch/qemu-user-static:register --reset
+
+script:
+  - docker version
+  - make build-push
