@@ -30,6 +30,7 @@ echo ${VERSION}
 
 if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == false ]]; then
   docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+  docker buildx create --use
   ${DOCKER_PUSH} -t ${image}:${NEXT_TAG} .
   ${DOCKER_PUSH} -t ${image}:latest .
   ${DOCKER_PUSH} -t ${image}:v${VERSION} .
