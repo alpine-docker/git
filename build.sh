@@ -4,8 +4,6 @@
 # Make sure you set secret enviroment variables in Travis CI
 # DOCKER_USERNAME
 # DOCKER_PASSWORD
-# GITHUB_NAME
-# GITHUB_TOKEN
 
 set -e
 
