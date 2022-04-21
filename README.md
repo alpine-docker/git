@@ -18,9 +18,9 @@ This feature was added on 23th May 2021.
 
 https://github.com/alpine-docker/git
 
-### travis CI build logs
+### Travis CI build logs
 
-https://app.travis-ci.com/alpine-docker/git
+https://app.travis-ci.com/github/alpine-docker/git
 
 ### Docker image tags
 
