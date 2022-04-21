@@ -20,7 +20,7 @@ https://github.com/alpine-docker/git
 
 ### travis CI build logs
 
-https://travis-ci.com/alpine-docker/git
+https://app.travis-ci.com/alpine-docker/git
 
 ### Docker image tags
 
