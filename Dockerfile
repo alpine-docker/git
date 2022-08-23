@@ -1,7 +1,7 @@
 FROM alpine
 
 RUN apk fix && \
-    apk --no-cache --update add git git-lfs less openssh && \
+    apk --no-cache --update add git git-lfs gpg less openssh && \
     git lfs install
 
 VOLUME /git
