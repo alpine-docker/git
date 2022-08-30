@@ -18,8 +18,8 @@ VERSION=($(docker run -i --rm ${image}:latest version|awk '{print $NF}'))
 echo ${VERSION}
 
 # install crane
-curl -LO https://github.com/tsuru/crane/releases/download/1.0.0/crane-1.0.0-linux_amd64.tar.gz
-tar zxvf crane-1.0.0-linux_amd64.tar.gz
+curl -LO https://github.com/google/go-containerregistry/releases/download/v0.11.0/go-containerregistry_Linux_x86_64.tar.gz
+tar zxvf go-containerregistry_Linux_x86_64.tar.gz
 chmod +x crane
 
 if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == false ]]; then
