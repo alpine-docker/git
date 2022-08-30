@@ -21,20 +21,19 @@ echo ${VERSION}
 curl -L https://github.com/tsuru/crane/releases/download/1.0.0/crane-1.0.0-linux_amd64.tar.gz -o crane-1.0.0-linux_amd64.tar.gz
 tar zxvf crane-1.0.0-linux_amd64.tar.gz
 chmod +x crane
-mv crane /usr/bin/crane
 
 if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == false ]]; then
   docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
   docker buildx create --use
   ${DOCKER_PUSH} -t ${image}:v${VERSION} .
-  crane copy ${image}:v${VERSION} ${image}:latest
-  crane copy ${image}:v${VERSION} ${image}:${VERSION}
+  ./crane copy ${image}:v${VERSION} ${image}:latest
+  ./crane copy ${image}:v${VERSION} ${image}:${VERSION}
 
 fi
 
 if [[ "$TRAVIS_BRANCH" == "feature/non-root" && "$TRAVIS_PULL_REQUEST" == false ]]; then
   docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
   ${DOCKER_PUSH} -t ${image}:user .
-  crane copy ${image}:user ${image}:v${VERSION}-user
-  crane copy ${image}:user ${image}:${VERSION}-user
+  ./crane copy ${image}:user ${image}:v${VERSION}-user
+  ./crane copy ${image}:user ${image}:${VERSION}-user
 fi
