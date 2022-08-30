@@ -34,4 +34,4 @@ install:
 	chmod a+x ~/.docker/cli-plugins/docker-buildx
 
 build-push:
-	bash ./build.sh
+	bash -x ./build.sh

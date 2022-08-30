@@ -18,7 +18,7 @@ VERSION=($(docker run -i --rm ${image}:latest version|awk '{print $NF}'))
 echo ${VERSION}
 
 # install crane
-curl -L https://github.com/tsuru/crane/releases/download/1.0.0/crane-1.0.0-linux_amd64.tar.gz -o crane-1.0.0-linux_amd64.tar.gz
+curl -LO https://github.com/tsuru/crane/releases/download/1.0.0/crane-1.0.0-linux_amd64.tar.gz
 tar zxvf crane-1.0.0-linux_amd64.tar.gz
 chmod +x crane
 
@@ -28,7 +28,6 @@ if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == false ]]; then
   ${DOCKER_PUSH} -t ${image}:v${VERSION} .
   ./crane copy ${image}:v${VERSION} ${image}:latest
   ./crane copy ${image}:v${VERSION} ${image}:${VERSION}
-
 fi
 
 if [[ "$TRAVIS_BRANCH" == "feature/non-root" && "$TRAVIS_PULL_REQUEST" == false ]]; then
