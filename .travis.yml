@@ -18,3 +18,4 @@ before_install:
 script:
   - docker version
   - make build-push
+  - docker run -ti --rm -v /var/run/docker.sock:/var/run/docker.sock -v ~/.cache:/root/.cache aquasec/trivy image --severity HIGH,CRITICAL alpine/git
