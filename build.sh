@@ -11,7 +11,7 @@ image="alpine/git"
 
 docker build --no-cache -t ${image}:latest .
 
-DOCKER_PUSH="docker buildx build --no-cache --push --platform linux/amd64,linux/arm/v7,linux/arm64/v8,linux/arm/v6,linux/ppc64le,linux/s390x" 
+DOCKER_PUSH="docker buildx build --no-cache --push --platform linux/amd64,linux/arm/v7,linux/arm64/v8,linux/arm/v6,linux/ppc64le,linux/s390x,linux/riscv64"
 
 # add another tag with git version, with this way, we can check this git image health
 VERSION=($(docker run -i --rm ${image}:latest version|awk '{print $NF}'))
