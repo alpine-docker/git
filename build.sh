@@ -34,6 +34,5 @@ if [[ "$TRAVIS_BRANCH" == "feature/edge" && "$TRAVIS_PULL_REQUEST" == false ]]; 
   docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
   docker buildx create --use
   ${DOCKER_PUSH} -t ${image}:edge .
-  ./crane copy ${image}:edge ${image}:edge-v${VERSION}
   ./crane copy ${image}:edge ${image}:edge-${VERSION}
 fi
