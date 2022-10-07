@@ -25,14 +25,15 @@ chmod +x crane
 if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == false ]]; then
   docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
   docker buildx create --use
-  ${DOCKER_PUSH} -t ${image}:v${VERSION} .
-  ./crane copy ${image}:v${VERSION} ${image}:latest
-  ./crane copy ${image}:v${VERSION} ${image}:${VERSION}
+  ${DOCKER_PUSH} -t ${image}:latest .
+  ./crane copy ${image}:latest ${image}:v${VERSION}
+  ./crane copy ${image}:latest ${image}:${VERSION}
 fi
 
-if [[ "$TRAVIS_BRANCH" == "feature/non-root" && "$TRAVIS_PULL_REQUEST" == false ]]; then
+if [[ "$TRAVIS_BRANCH" == "feature/edge" && "$TRAVIS_PULL_REQUEST" == false ]]; then
   docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-  ${DOCKER_PUSH} -t ${image}:user .
-  ./crane copy ${image}:user ${image}:v${VERSION}-user
-  ./crane copy ${image}:user ${image}:${VERSION}-user
+  docker buildx create --use
+  ${DOCKER_PUSH} -t ${image}:edge .
+  ./crane copy ${image}:edge ${image}:edge-v${VERSION}
+  ./crane copy ${image}:edge ${image}:edge-${VERSION}
 fi
