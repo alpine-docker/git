@@ -78,6 +78,16 @@ for example, if you need clone this repository, with the function you just set, 
 - You need redefine (re-run) the alias, when you switch between different repositories
 - You need run above alias command only under git repository's root directory.
 
+### Optional usage 3:
+
+    alias git='docker run -ti --rm -u$(id -u):$(id -g) -e HOME=${HOME} -v /etc/passwd:/etc/passwd -v /etc/group:/etc/group -v ${HOME}:${HOME} -v $(pwd):/git alpine/git'
+
+### NOTES:
+
+- set uid:gid and provide passwd and group from host
+- run git as the current user instead of root for proper ownership of files
+- can be used at any directory as evaluation of $(pwd) is defered until alias is used
+
 ## Demo
 
     $ cd application
