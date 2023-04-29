@@ -1,5 +1,7 @@
 ### docker-git-alpine
 
+[If enjoy, please consider buying me a coffee.](https://www.buymeacoffee.com/ozbillwang)
+
 A useful simple git container running in alpine Linux, especially for tiny Linux distro, such as RancherOS, which doesn't have a package manager.
 
 [![DockerHub Badge](http://dockeri.co/image/alpine/git)](https://hub.docker.com/r/alpine/git/)
