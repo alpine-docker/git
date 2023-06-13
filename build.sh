@@ -7,7 +7,8 @@
 
 set -e
 
-image="alpine/git"
+# image="alpine/git"
+image="ozbillwang/git"
 
 docker build --no-cache -t ${image}:latest .
 

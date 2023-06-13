@@ -1,0 +1,63 @@
+version: 2.1
+
+# Prerequisite
+# Make sure you set secret enviroment variables in CICD
+# DOCKER_USERNAME
+# DOCKER_PASSWORD
+# API_TOKEN
+
+# REBUILD - it has default value "false", if need rebuild the image, turn it on with value "true"
+
+parameters:
+  rebuild:
+    type: string
+    default: "false"
+
+jobs:
+  build:
+    docker:
+      - image: alpine/docker-with-buildx
+    environment:
+      REBUILD: << pipeline.parameters.rebuild >>
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 18.09.3
+      - run: |
+          apk --no-cache --update add bash curl sudo
+          echo $REBUILD
+          bash ./build.sh
+
+workflows:
+  build:
+    jobs:
+      - build:
+          name: build
+          context:
+            - Docker-Hub
+          filters:
+            branches:
+              only:
+                - master
+                - main
+
+  nightly:
+    triggers:
+       - schedule:
+           cron: "0 4 * * 0"
+           filters:
+             branches:
+               only:
+                 - master
+                 - main
+    jobs:
+      - build:
+          name: build
+          context:
+            - Docker-Hub
+          filters:
+            branches:
+              only:
+                - master
+                - main
+
