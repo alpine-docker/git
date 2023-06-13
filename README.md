@@ -20,9 +20,9 @@ This feature was added on 23th May 2021.
 
 https://github.com/alpine-docker/git
 
-### Travis CI build logs
+### CI build logs
 
-https://app.travis-ci.com/github/alpine-docker/git
+https://app.circleci.com/pipelines/github/alpine-docker/git
 
 ### Docker image tags
 
@@ -112,9 +112,8 @@ Refer:
 
 ### Automation builds
 
-Set Travis CI to run builds every month.
-- build on latest alpine image
-- build with latest git in the alpine image
-- generate new tag for this image
-- generate git's version as image tag as well (`v${GIT_VERSION}`)
+Set  CI to run builds every month.
+- build latest alpine image locally
+- Get the git version from the image
+- use the git's version as image tag as well (`v${GIT_VERSION}`)
 - update `latest` tag for this image

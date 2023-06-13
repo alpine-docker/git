@@ -7,7 +7,8 @@
 
 set -e
 
-image="alpine/git"
+# image="alpine/git"
+image="ozbillwang/git"
 
 docker build --no-cache -t ${image}:latest .
 
@@ -22,7 +23,7 @@ curl -LO https://github.com/google/go-containerregistry/releases/download/v0.11.
 tar zxvf go-containerregistry_Linux_x86_64.tar.gz
 chmod +x crane
 
-if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == false ]]; then
+if [[ "$CIRCLE_BRANCH" == "master" && "$CIRCLE_PULL_REQUEST" == "" ]]; then
   docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
   docker buildx create --use
   ${DOCKER_PUSH} -t ${image}:v${VERSION} .
@@ -30,7 +31,7 @@ if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == false ]]; then
   ./crane copy ${image}:v${VERSION} ${image}:${VERSION}
 fi
 
-if [[ "$TRAVIS_BRANCH" == "feature/non-root" && "$TRAVIS_PULL_REQUEST" == false ]]; then
+if [[ "$CIRCLE_BRANCH" == "feature/non-root" && "$CIRCLE_PULL_REQUEST" == "" ]]; then
   docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
   ${DOCKER_PUSH} -t ${image}:user .
   ./crane copy ${image}:user ${image}:v${VERSION}-user
