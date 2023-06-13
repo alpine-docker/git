@@ -43,7 +43,7 @@ uid=1000(git-user) gid=1000(git-user)
 ```
 Docker build from feature branch `feature/non-root`
 
-### usage
+### Usage
 
     docker run -ti --rm -v ${HOME}:/root -v $(pwd):/git alpine/git <git_command>
 
