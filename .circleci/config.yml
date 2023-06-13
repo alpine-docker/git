@@ -26,7 +26,7 @@ jobs:
       - run: |
           apk --no-cache --update add bash curl sudo
           echo $REBUILD
-          bash -x ./build.sh
+          bash ./build.sh
 
 workflows:
   build:
