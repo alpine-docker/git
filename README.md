@@ -22,7 +22,7 @@ https://github.com/alpine-docker/git
 
 ### CI build logs
 
-https://app.circleci.com/pipelines/github/ozbillwang/alpine-git
+https://app.circleci.com/pipelines/github/alpine-docker/git
 
 ### Docker image tags
 
