@@ -8,7 +8,7 @@ A useful simple git container running in alpine Linux, especially for tiny Linux
 
 ### notes about new github action pipeline
 
-From 3rd Oct 2024, the automation build and deploy pipeline has been switched from Circle CI to Github Action.
+From 3rd Oct 2024, the automation build and deploy pipeline has been switched from Circle CI to Github Action (#68 and #70)
 
 ### notes about multi-arch images
 
