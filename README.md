@@ -6,7 +6,11 @@ A useful simple git container running in alpine Linux, especially for tiny Linux
 
 [![DockerHub Badge](http://dockeri.co/image/alpine/git)](https://hub.docker.com/r/alpine/git/)
 
-### Additional notes about multi-arch images
+### notes about new github action pipeline
+
+From 3rd Oct 2024, the automation build and deploy pipeline has been switched from Circle CI to Github Action.
+
+### notes about multi-arch images
 
 This feature was added on 23th May 2021.
 
@@ -22,26 +26,11 @@ https://github.com/alpine-docker/git
 
 ### CI build logs
 
-https://app.circleci.com/pipelines/github/alpine-docker/git
+https://github.com/alpine-docker/git/actions
 
 ### Docker image tags
 
 https://hub.docker.com/r/alpine/git/tags/
-
-Notes:
-
-New tags with non-root user in image has been created.
-
-```
-alpine/git:<version>-user
-alpine/git:user
-```
-Its uid and gid in container are 1000
-```
-$ docker run -ti --rm --entrypoint=id alpine/git:user
-uid=1000(git-user) gid=1000(git-user)
-```
-Docker build from feature branch `feature/non-root`
 
 ### Usage
 
@@ -112,8 +101,9 @@ Refer:
 
 ### Automation builds
 
-Set  CI to run builds every month.
-- build latest alpine image locally
+Set CI to run builds per week
+
+- build latest alpine image with multi-arch supported
 - Get the git version from the image
 - use the git's version as image tag as well (`v${GIT_VERSION}`)
 - update `latest` tag for this image
