@@ -6,6 +6,8 @@ on:
     branches:
       - "main"
       - "master"
+  schedule:
+    - cron: '0 4 * * 0'
   pull_request:
     branches: ["**"]
 
