@@ -62,3 +62,26 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      # - name: Checkout code
+      #   uses: actions/checkout@v2
+
+      # - name: check the platform in multi-arch images
+      #   run: |
+      #     echo ${{ steps.meta.outputs.tags }}
+      #     bash ./test.sh ${{ steps.meta.outputs.tags }}
+
+      - name: set tags
+        run: |
+          # install crane
+          curl -LO https://github.com/google/go-containerregistry/releases/download/v0.20.2/go-containerregistry_Linux_x86_64.tar.gz
+          tar zxvf go-containerregistry_Linux_x86_64.tar.gz
+          chmod +x crane
+
+          export VERSION=($(docker run -i --rm ${{ steps.meta.outputs.tags }} version|awk '{print $NF}'))
+          echo $VERSION
+          ./crane auth login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }} index.docker.io
+          ./crane copy ${{ steps.meta.outputs.tags }} ${{ env.IMAGE_NAME }}:latest
+          ./crane copy ${{ steps.meta.outputs.tags }} ${{ env.IMAGE_NAME }}:${VERSION}
+          ./crane copy ${{ steps.meta.outputs.tags }} ${{ env.IMAGE_NAME }}:v${VERSION}
+          rm -f /home/runner/.docker/config.json
