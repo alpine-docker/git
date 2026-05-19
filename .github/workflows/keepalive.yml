@@ -1,0 +1,32 @@
+name: Keepalive
+
+on:
+  schedule:
+    - cron: '0 0 1 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  keepalive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Keep repository active
+        run: |
+          echo "keepalive: $(date -u +'%Y-%m-%dT%H:%M:%SZ')" > .github/keepalive
+
+      - name: Commit keepalive marker
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/keepalive
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "chore(ci): keepalive"
+          git push
