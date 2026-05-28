@@ -55,7 +55,7 @@ jobs:
         id: build-and-push
         uses: docker/build-push-action@v6
         with:
-          platforms: linux/amd64,linux/arm/v7,linux/arm64/v8,linux/arm/v6,linux/ppc64le,linux/s390x,linux/386
+          platforms: linux/amd64,linux/arm/v7,linux/arm64/v8,linux/arm/v6,linux/ppc64le,linux/s390x,linux/386,linux/riscv64
           sbom: ${{ github.event_name != 'pull_request' }}
           provenance: ${{ github.event_name != 'pull_request' }}
           push: ${{ github.event_name != 'pull_request' }}
@@ -64,7 +64,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-  
+
       # - name: Checkout code
       #   uses: actions/checkout@v2
 
